@@ -13,9 +13,9 @@ export const MapView = () => {
         if (!isLoading) {
             const map = new mapboxgl.Map({
                 container: mapDiv.current!, // container ID
-                style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                style: 'mapbox://styles/mapbox/dark-v10', // style URL
                 center: userLocation, // starting position [lng, lat]
-                zoom: 9 // starting zoom
+                zoom: 14 // starting zoom
             });
             setMap(map);
         }
