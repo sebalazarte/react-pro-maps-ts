@@ -1,5 +1,6 @@
-import { ChangeEvent, useContext, useRef } from 'react'
+import { ChangeEvent, useContext } from 'react'
 import { PlacesContext } from '../context';
+import { SearchResults } from './SearchResults';
 
 export const SearchBar = () => {
 
@@ -21,10 +22,11 @@ export const SearchBar = () => {
                 placeholder='Encuentra un lugar'
                 onChange={handlerChange}
             />
+
+            <SearchResults/>
+
         </div>
     )
 }
-function useState(arg0: string): [any, any] {
-    throw new Error('Function not implemented.');
-}
+
 
