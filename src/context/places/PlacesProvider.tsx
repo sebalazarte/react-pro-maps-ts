@@ -31,11 +31,14 @@ export const PlacesProvider = ({ children }: Props) => {
         getUserLocation().then(logLat => dispatch({ type: 'setUserLocation', payload: logLat }));
     }, [])
 
-    const searchPlacesByTerm = async(query: string) => {
-        if(query.length === 0) return [];
-        if(!state.userLocation) throw new Error('No existe ubicacion del usuario');
+    const searchPlacesByTerm = async (query: string) => {
+        if (query.length === 0) {
+            dispatch({ type: 'setPlaces', payload: [] });
+            return [];
+        }
+        if (!state.userLocation) throw new Error('No existe ubicacion del usuario');
 
-        dispatch({type: 'setLoadingPlaces'});
+        dispatch({ type: 'setLoadingPlaces' });
 
         const resp = await searchApi.get<PlacesResponse>(`/${query}.json`, {
             params: {
@@ -43,7 +46,7 @@ export const PlacesProvider = ({ children }: Props) => {
             }
         });
 
-        dispatch({type: 'setPlaces', payload: resp.data.features});
+        dispatch({ type: 'setPlaces', payload: resp.data.features });
 
         return resp.data.features;
     }
